@@ -29,7 +29,7 @@ function App() {
     }
 
     document.title = "Kedai Kopi BJ";
-    document.querySelector("link[rel='icon']").href = "/src/assets/img/logo.png"; // Sesuaikan dengan favicon kamu
+    document.querySelector("link[rel='icon']").href = "/logo.png"; // Sesuaikan dengan favicon kamu
   }, []);
 
   // Fungsi untuk login

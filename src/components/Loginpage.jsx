@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import logo from "/src/assets/img/logo.png";
 
 const Loginpage = ({ onLogin }) => {
     const [email, setEmail] = useState("");
@@ -63,7 +62,7 @@ const Loginpage = ({ onLogin }) => {
         <div className="login-container">
             <div className="login-box">
                 <div className="login-logo" style={{ marginTop: error ? "20px" : "0" }}>
-                    <img rc={logo} alt="Logo" />
+                    <img src="/logo.png" alt="Logo" />
                 </div>
                 <h3 className="text-center mb-3 judul-form">
                     {isResetting ? "Reset Password" : "Login"}
