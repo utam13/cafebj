@@ -62,7 +62,7 @@ const Loginpage = ({ onLogin }) => {
         <div className="login-container">
             <div className="login-box">
                 <div className="login-logo" style={{ marginTop: error ? "20px" : "0" }}>
-                    <img src="/logo.png" alt="Logo" />
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo" />
                 </div>
                 <h3 className="text-center mb-3 judul-form">
                     {isResetting ? "Reset Password" : "Login"}
