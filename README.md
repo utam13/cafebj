@@ -1,14 +1,14 @@
 https://utam13.github.io/cafebj
 
-# React + Vite
+# Kedai Kopi BJ Sistem Administrasi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Template ini merupakan dummy dari sistem adminitrasi untuk Kedai Kopi BJ yang bertujuan untuk mengelola informasi yang ada di setiap cabang dan gudang
 
-Currently, two official plugins are available:
+Tujuan dari aplikasi ini adalaj:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Melakukan monitoring terhadap pengeluaran
+- Melakukan monitoring terhadap penjualan
+- Mendapatkan hasil laporan laba rugi untuk setiap cabang
+- Membantu dalam melakukan kontrol stok pada cabang dan gudang
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Dummy ini belum terhubung dengan REST API untuk dapat berinteraksi dengan database, dibangun dengan REACT + VITE sebagai frontend dan Laravel sebagai backend dengan metode REST API dengan tambahan Laravel Sanctum untuk proses autentikasi prose login user
