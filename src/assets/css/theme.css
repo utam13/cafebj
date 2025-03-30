@@ -1,0 +1,692 @@
+/* Pastikan body dan html memenuhi seluruh tinggi viewport */
+html,
+body {
+    overflow-x: hidden;
+    /* Mencegah scroll horizontal */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ====== Layout Utama ====== */
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+    margin: 0;
+}
+
+.fs-7 {
+    font-size: 0.85rem;
+}
+
+/* Lebih kecil dari fs-6 */
+.fs-8 {
+    font-size: 0.75rem;
+}
+
+/* Lebih kecil lagi */
+
+/* ====== Sidebar ====== */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    transition: width 0.3s;
+    perspective: 800px;
+    /* Efek kedalaman 3D */
+}
+
+@keyframes spinSidebar {
+    from {
+        transform: rotateY(0deg);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+        box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    to {
+        transform: rotateY(360deg);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ====== Styling Logo di Sidebar ====== */
+.sidebar img {
+    width: 120px;
+    /* Ukuran default */
+    height: auto;
+    /* Hindari height fixed agar aspect ratio tetap */
+    aspect-ratio: 1/1;
+    /* Memastikan gambar tetap bulat */
+    object-fit: cover;
+    /* Mencegah gambar terdistorsi */
+    border-radius: 50%;
+    /* Membuatnya tetap bulat */
+    display: block;
+    margin: 0 auto;
+
+    /* Tambahkan animasi */
+    animation: spinSidebar 8s linear infinite;
+    transform-style: preserve-3d;
+    /* Supaya efek 3D lebih terasa */
+}
+
+/* ====== Responsiveness untuk Layar Kecil ====== */
+@media (max-width: 768px) {
+    .sidebar img {
+        width: 80px;
+        /* Ukuran lebih kecil pada layar kecil */
+    }
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.sidebar a i {
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background: #495057;
+}
+
+.sidebar .active {
+    background-color: #495057;
+    /* Warna biru */
+    color: white;
+    /* Warna teks */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.submenu-item {
+    display: flex;
+    align-items: center;
+    /* Pastikan icon & teks sejajar */
+    padding: 6px 12px;
+    /* Sesuaikan jarak */
+    font-size: 14px;
+    white-space: nowrap;
+    /* Mencegah teks turun ke bawah */
+    overflow: hidden;
+    /* Menghindari overflow */
+    text-overflow: ellipsis;
+    /* Tambahkan "..." jika teks terlalu panjang */
+}
+
+.submenu-item span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Jarak antara icon dan teks */
+    width: 100%;
+}
+
+.submenu-item i {
+    flex-shrink: 0;
+    /* Mencegah icon mengecil */
+    width: 16px;
+    /* Pastikan semua icon memiliki lebar tetap */
+    text-align: center;
+}
+
+/* === Style Dropdown Menu Sidebar === */
+.sidebar .dropdown>a {
+    padding: 8px 10px;
+    /* Sedikit kurangi padding utama */
+}
+
+/* === Style Submenu === */
+.sidebar .dropdown .submenu-item {
+    margin-top: -5px;
+    padding: 6px 10px;
+    /* Kurangi padding submenu */
+    margin-left: 10px;
+    /* Kurangi margin kiri */
+    display: block;
+}
+
+/* === Hover Effect untuk Submenu === */
+.sidebar .dropdown .collapse a:hover {
+    background-color: #e9ecef;
+    color: #000;
+}
+
+/* Sidebar Responsif */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        padding: 10px;
+    }
+
+    .sidebar a {
+        font-size: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .sidebar a i {
+        font-size: 18px;
+        margin-right: 0;
+    }
+}
+
+.dropdown-menu-icon {
+    margin-left: auto;
+    position: absolute;
+    right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar .dropdown>a {
+    position: relative;
+}
+
+/* ====== Main Content ====== */
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: calc(100vw - 250px);
+    transition: margin-left 0.3s;
+    overflow-x: hidden;
+}
+
+/* Jika Sidebar Kecil */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 70px;
+    }
+}
+
+/* ====== Header ====== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    /* Sesuaikan dengan lebar sidebar */
+    width: calc(100% - 250px);
+    /* Sisa lebar setelah sidebar */
+    height: 65px;
+    /* Tinggi header */
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    padding: 15px 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header a {
+    text-decoration: none !important;
+}
+
+.header .dropdown {
+    margin-left: auto;
+}
+
+.header .dropdown-toggle::after {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Header Responsif */
+@media (max-width: 768px) {
+    .header h4 {
+        font-size: 16px;
+    }
+
+    .header .dropdown a {
+        font-size: 14px;
+    }
+}
+
+/* ====== Content Dashboard ====== */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-x: hidden;
+    margin-top: 65px;
+}
+
+.chart-container {
+    position: relative;
+    min-height: 300px;
+    /* Pastikan ada tinggi minimum */
+}
+
+.chart-box {
+    flex: 1;
+    min-width: 400px;
+    /* Setiap grafik memiliki lebar minimal */
+    max-width: 500px;
+    /* Lebar maksimal agar tidak terlalu besar */
+    height: 300px;
+    /* Batasi tinggi agar proporsional */
+    position: relative;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Buat chart lebih proporsional */
+canvas {
+    max-width: 100%;
+    height: 250px !important;
+}
+
+/* ====== Loading Overlay ====== */
+.loading-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/* ====== Filter Row (Tampilan Besar) ====== */
+.mb-3 .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Beri jarak antar filter */
+}
+
+/* ====== Filter Responsive (Tampilan Kecil) ====== */
+@media (max-width: 768px) {
+    .mb-3 .row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        /* Jarak lebih besar agar tidak menempel */
+    }
+
+    .mb-3 .col-md-2 {
+        width: 100%;
+    }
+}
+
+/* Container Alert Scroll */
+.alert-container {
+    max-height: calc(100vh - 450px);
+    overflow-y: auto;
+    padding-right: 5px;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* Styling Alert */
+.alert-card {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-left: 3px solid;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+/* Blink untuk tagihan yang sudah overdue */
+@keyframes blink {
+    50% {
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+}
+
+.overdue {
+    animation: blink 1s infinite alternate;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .alert-container {
+        max-height: 120px;
+    }
+
+    .alert-card {
+        font-size: 11px;
+        padding: 5px;
+    }
+}
+
+.btn-xs {
+    padding: 2px 5px !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    height: 24px !important;
+    /* Batas tinggi agar tidak besar */
+}
+
+.btn-xs i {
+    font-size: 10px !important;
+}
+
+/* =======================
+TABLE STYLING
+======================= */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.table thead .col-id {
+    width: 40px;
+}
+
+.table thead .col-aksi {
+    width: 120px;
+}
+
+.table thead .col-tgl {
+    width: 150px;
+}
+
+.table tbody .text-right {
+    text-align: right !important;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table .sticky-column {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    border-right: 1px solid #dee2e6;
+}
+
+.table th.sticky-column {
+    background-color: #212121;
+}
+
+/* Freeze Kolom ID */
+.table .sticky-id {
+    left: 0;
+    width: 50px;
+    /* Sesuaikan dengan kebutuhan */
+    min-width: 50px;
+    text-align: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Freeze Kolom Aksi */
+.table .sticky-aksi {
+    left: 50px;
+    /* Sesuaikan dengan lebar kolom ID */
+    width: 120px;
+    /* Sesuaikan dengan kebutuhan */
+    min-width: 100px;
+    text-align: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Tambahkan efek bayangan saat scroll */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Freeze Kolom Aksi (kedua kolom) */
+.sticky-column:nth-child(2) {
+    left: 50px;
+    /* Geser setelah kolom ID */
+}
+
+.table-responsive {
+    overflow-x: auto;
+    cursor: grab;
+    user-select: none;
+    /* Mencegah teks terpilih saat drag */
+    scroll-behavior: smooth;
+    white-space: nowrap;
+}
+
+.table-responsive:active {
+    cursor: grabbing;
+}
+
+.table .list-container {
+    max-height: 250px;
+    overflow-y: auto;
+    min-width: 400px;
+}
+
+.table .list-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #333;
+}
+
+/* Hilangkan border jika hanya ada satu item */
+.table .list-group:only-child {
+    border-bottom: none;
+}
+
+/* Hilangkan border baris akhir */
+.table .list-group:last-child {
+    border-bottom: none;
+}
+
+.table .list-group-item {
+    background-color: transparent !important;
+    border: none;
+    padding: 8px 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.table .nomor-list {
+    flex: 0 0 40px;
+    text-align: center;
+}
+
+.table .kategori-list,
+.table .barang-list {
+    flex: 2;
+    text-align: left;
+    min-width: 150px;
+}
+
+.table .qty-list {
+    flex: 1;
+    text-align: center;
+    min-width: 70px;
+}
+
+.table .total-list {
+    flex: 1;
+    text-align: right;
+    min-width: 100px;
+}
+
+.table .total-button {
+    flex: 1;
+    text-align: right;
+    min-width: 5px;
+}
+
+.table .center-content {
+    display: flex;
+    justify-content: center;
+    /* Tengahkan secara horizontal */
+    align-items: center;
+    /* Tengahkan secara vertikal */
+    height: 100%;
+    /* Pastikan tinggi menyesuaikan parent */
+}
+
+.no-image {
+    width: 50%;
+}
+
+.img-preview {
+    max-width: 100%;
+    max-height: 400px;
+    /* Sesuaikan tinggi maksimal */
+    display: block;
+    margin: 0 auto;
+}
+
+/* STYLE PAGINATION */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 13px;
+}
+
+.pagination .page-link:hover {
+    background: #fff;
+    color: #000;
+}
+
+.pagination .active .page-link {
+    background: #495058;
+    color: #fff;
+    /* border: 1px solid #333; */
+}
+
+.form-label-sm {
+    font-size: 14px;
+}
+
+/* Container utama */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+/* Kotak form login */
+.login-box {
+    position: relative;
+    background: #fff;
+    padding: 40px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.login-box input {
+    text-align: center;
+}
+
+/* Animasi berputar saat halaman dimuat */
+@keyframes spinCoin {
+    0% {
+        transform: translateX(-50%) rotateY(0deg);
+    }
+
+    100% {
+        transform: translateX(-50%) rotateY(360deg);
+    }
+}
+
+/* Logo lingkaran */
+.login-logo {
+    position: absolute;
+    top: -95px;
+    /* Sesuaikan agar logo tetap memotong form */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    /* Perbesar lingkaran */
+    height: 200px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Tambahkan animasi */
+    animation: spinCoin 5s linear infinite;
+}
+
+/* Perbesar gambar di dalam logo */
+.login-logo img {
+    width: 150px;
+    /* Sesuaikan ukuran logo */
+    height: 150px;
+    border-radius: 50%;
+}
+
+.judul-form {
+    margin-top: 90px;
+}
+
+.blinking-logo {
+    font-size: 100px !important;
+    color: rgba(255, 255, 255, 0.836);
+    animation: blinkalertlayar 1s infinite alternate;
+}
+
+@keyframes blinkalertlayar {
+    0% {
+        filter: brightness(50);
+    }
+
+    100% {
+        filter: brightness(20) hue-rotate(0deg) saturate(10) drop-shadow(0 0 10px red);
+    }
+}
