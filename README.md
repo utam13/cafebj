@@ -1,4 +1,6 @@
 https://utam13.github.io/cafebj
+catatan:
+"karena web app ini berkonsep webadmin maka hanya bisa diakses dari perangkat dengan lebar layar minimal 800 pixel"
 
 # Kedai Kopi BJ Sistem Administrasi
 
